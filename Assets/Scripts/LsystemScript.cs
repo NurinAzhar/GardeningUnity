@@ -10,6 +10,7 @@ using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using UnityEngine.UIElements;
 using UnityEditor.ShaderKeywordFilter;
 using System.Data;
+using TMPro;
 
 
 // Store values of positions and rotations of plant by calling in a stack
@@ -24,24 +25,104 @@ public class TransformationsInfo
 public class LsystemScript : MonoBehaviour
 {
 
-    [SerializeField]
-    private float length = 2f;
+    private float length = 7f; //5 
 
-    [SerializeField]
-    private float angleTurn = 30f;
+   
+    private float angleTurn = 30f; //30
 
-    [SerializeField]
-    private float width = 1f;
+    
+    private float width = 1f; //1
 
-    [SerializeField]
-    private int iterations = 4;
+ 
+    private int iterations = 4; //4
 
-    [SerializeField]
-    public float variance = 10f;
 
-    [SerializeField]
-    [Range(0, 5)]
-    public int treeTypes = 0;
+    public float variance = 10f; //10
+
+    public enum FertiliserType
+    {
+        None,
+        Type1,
+        Type2,
+        Type3,
+        Type4
+    }
+
+    public enum PlantSeed
+    {
+        None,
+        Rhododendron,
+        Camellia,
+        Azalea,
+        MoorGrass,
+        Lavender,
+        Phacelia
+    }
+
+    // Setting fertiliser types - Called by Canvas Button Fertiliser types
+    public void setType1()
+    {
+        currentFertiliserType = FertiliserType.Type1;
+    }
+
+    public void setType2()
+    {
+        currentFertiliserType = FertiliserType.Type2;
+    }
+
+    public void setType3()
+    {
+        currentFertiliserType = FertiliserType.Type3;
+    }
+
+    public void setType4()
+    {
+        currentFertiliserType = FertiliserType.Type4;
+    }
+
+
+    // Setting plant seeds - Called by Canvas Dropdown Plant Seeds
+    public void HandleInputData(int val)
+    {
+        if (val == 0)
+        {
+            currentPlantSeed = PlantSeed.Rhododendron;
+        }
+        else if (val == 1) 
+        {
+            currentPlantSeed = PlantSeed.Camellia;
+        }
+        else if (val == 2)
+        {
+            currentPlantSeed = PlantSeed.Azalea;
+        }
+        else if (val == 3)
+        {
+            currentPlantSeed = PlantSeed.MoorGrass;
+        }
+        else if (val == 4)
+        {
+            currentPlantSeed = PlantSeed.Lavender;
+        }
+        else if (val == 5)
+        {
+            currentPlantSeed = PlantSeed.Phacelia;
+        }
+
+    }
+
+    // Setting water amount
+    public void setWater2()
+    {
+        waterAmount = 2;
+    }
+
+    public void setWater3()
+    {
+        waterAmount = 3;
+    }
+
+
 
 
     public GameObject Tree = null;
@@ -80,9 +161,17 @@ public class LsystemScript : MonoBehaviour
     private Vector3 initPosition = Vector3.zero;
     private float[] randomRotationValues = new float[100];
 
+    [SerializeField]
+    private FertiliserType currentFertiliserType;
+    private FertiliserType fertiliserType;
+
+    [SerializeField]
+    private PlantSeed currentPlantSeed;
+    private PlantSeed plantSeed;
+    public int waterAmount;
 
     // Use this for initialisation
-    void Start() 
+    void Start()
     {
 
         transformStack = new Stack<TransformationsInfo>();
@@ -142,7 +231,7 @@ public class LsystemScript : MonoBehaviour
             { 'X', "[F[+X/FX+/*^^^]F[-X/F+/F*^^^]+X/*XF^^^]" },
             { 'F', "FF" }
         };
-          
+
 
             rules.Add(rule1);
             rules.Add(rule2);
@@ -152,10 +241,10 @@ public class LsystemScript : MonoBehaviour
             rules.Add(rule6);
 
             Generate();
-            
-        } catch(Exception ex) { Debug.Log(ex.ToString()); }
-    }
 
+        }
+        catch (Exception ex) { Debug.Log(ex.ToString()); }
+    }
 
 
     private void Generate()
@@ -194,7 +283,7 @@ public class LsystemScript : MonoBehaviour
                     initPosition = transform.position;
                     transform.Translate(Vector3.up * 2 * length);
 
-                    GameObject segment = currentString[(c + 1) % currentString.Length] == 'X' || currentString[(c + 3) % currentString.Length] == 'F' 
+                    GameObject segment = currentString[(c + 1) % currentString.Length] == 'X' || currentString[(c + 3) % currentString.Length] == 'F'
                                           && currentString[(c + 4) % currentString.Length] == 'X' ? Instantiate(Leaf) : Instantiate(Branch);
 
                     //GameObject segment = Instantiate(Branch);
@@ -304,45 +393,54 @@ public class LsystemScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (iterationsLastFrame != iterations ||
-                angleLastFrame != angleTurn ||
-                widthLastFrame != width ||
-                lengthLastFrame != length)
-        {
-            Generate();
-        }
+        fertiliserType = currentFertiliserType;
+        plantSeed = currentPlantSeed;
 
-        if (treeTypes == 0)
+        //if (iterationsLastFrame != iterations ||
+        //        angleLastFrame != angleTurn ||
+        //        widthLastFrame != width ||
+        //        lengthLastFrame != length)
+        //{
+        //    Generate();
+        //}
+
+        
+        if (plantSeed == PlantSeed.Rhododendron && fertiliserType == FertiliserType.Type1 && waterAmount == 2) 
         {
             currentPlant = rules[0];
             Generate();
-        }
-        else if (treeTypes == 1)
+        } 
+
+        else if (plantSeed == PlantSeed.Camellia && fertiliserType == FertiliserType.Type2 && waterAmount == 3)
         {
             currentPlant = rules[1];
             Generate();
         }
-        else if (treeTypes == 2)
+
+        else if (plantSeed == PlantSeed.Azalea && fertiliserType == FertiliserType.Type3 && waterAmount == 3)
         {
             currentPlant = rules[2];
             Generate();
         }
-        else if (treeTypes == 3)
+
+        else if (plantSeed == PlantSeed.MoorGrass && fertiliserType == FertiliserType.Type4 && waterAmount == 2)
         {
             currentPlant = rules[3];
             Generate();
         }
-        else if (treeTypes == 4)
+
+        else if (plantSeed == PlantSeed.Lavender && fertiliserType == FertiliserType.Type3 && waterAmount == 3)
         {
             currentPlant = rules[4];
             Generate();
         }
-        else if (treeTypes == 5)
+
+        else if (plantSeed == PlantSeed.Phacelia && fertiliserType == FertiliserType.Type1 && waterAmount == 2)
         {
             currentPlant = rules[5];
             Generate();
         }
 
-
     }
+    
 }
