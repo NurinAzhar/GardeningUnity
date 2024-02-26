@@ -404,7 +404,7 @@ public class LsystemScript : MonoBehaviour
         //    Generate();
         //}
 
-        
+        // generate and flag variable save it as a mesh (generated only once and saved as a mesh)
         if (plantSeed == PlantSeed.Rhododendron && fertiliserType == FertiliserType.Type1 && waterAmount == 2) 
         {
             currentPlant = rules[0];
