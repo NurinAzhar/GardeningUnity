@@ -13,6 +13,7 @@ public class CopyAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        //this will clone a lot? check if u still need it 
         //GameObject duplicate = Instantiate(itemDragged);
         //itemDragged = duplicate;
 
@@ -29,13 +30,17 @@ public class CopyAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //throw new System.NotImplementedException();
 
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         if (transform.parent == startParent)
         {
             transform.position = startPosition;
         }
+    }
+
+    public GameObject GetItemDragged()
+    {
+        return itemDragged; 
     }
 
 

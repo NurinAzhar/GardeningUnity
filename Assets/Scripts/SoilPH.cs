@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDropHandler /*IEndDragHandler*/
 {
 
     public TMP_Text text;
+    //GameObject currentDropped = null;
 
     public enum SoilPh
     {
@@ -33,6 +34,29 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         text.text = "";
     }
 
+    public void OnDrop(PointerEventData eventData)
+    {
+
+        //GameObject currentDropped = GetComponent<CopyAndDrag>().itemDragged;
+
+        GameObject currentDropped = eventData.pointerDrag;
+
+        GameObject sodiumNitrate = GameObject.Find("SodiumNitrate");
+
+        if (currentDropped != null)
+        {
+            if (currentDropped == GameObject.Find("AmmoniumSulfate"))
+            {
+                print("Ammonium Sulfate detected");
+            }
+            else if (currentDropped == GameObject.Find("SodiumNitrate"))
+            {
+                print("Sodium Nitrate detected");
+            }
+        } 
+
+    }
+
     //called only once to set initial ph value of soil
     public void Start()
     {
@@ -43,4 +67,5 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         
     }
+
 }
