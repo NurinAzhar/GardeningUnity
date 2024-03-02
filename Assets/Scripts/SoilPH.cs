@@ -10,14 +10,17 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public TMP_Text text;
     //GameObject currentDropped = null;
+    public SoilPh phLevel;
 
     public enum SoilPh
     {
+        Neutral,
         Acidic,
         Alkaline
     }
-
-    public float phRange;
+    
+    // pH value of soil
+    public float phRange; 
 
     //initialising ph value of soil
     public void SetRandom()
@@ -45,19 +48,24 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
         if (currentDropped != null)
         {
-            if (currentDropped == GameObject.Find("AmmoniumSulfate"))
+
+            if (currentDropped == GameObject.Find("AmmoniumSulfate")) //decrease pH soil
             {
                 print("Ammonium Sulfate detected");
+
+                phRange = phRange - UnityEngine.Random.Range(3f, 5f);
             }
-            else if (currentDropped == GameObject.Find("SodiumNitrate"))
+            else if (currentDropped == GameObject.Find("SodiumNitrate")) //increase pH soil
             {
                 print("Sodium Nitrate detected");
+
+                phRange = phRange + UnityEngine.Random.Range(3f, 5f);
             }
         } 
 
     }
 
-    //called only once to set initial ph value of soil
+    //called only once to set initial random ph value of soil
     public void Start()
     {
         SetRandom();
@@ -65,7 +73,30 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void Update()
     {
-        
+        // Keep phRange out of the negatives and out of the range of 0 - 14
+        if (phRange < 0f)
+        {
+            phRange = UnityEngine.Random.Range(0.1f, 0.9f);
+        } 
+        else if  (phRange > 14f)
+        {
+            phRange = UnityEngine.Random.Range(13.0f, 14f);
+        } 
+        else if (phRange >= 0 && phRange <= 6.9)
+        {
+            phLevel = SoilPh.Acidic;
+
+        }
+        else if (phRange == 7)
+        {
+            phLevel = SoilPh.Neutral;
+
+        }
+        else if (phRange >= 7.1 &&  phRange <= 14)
+        {
+            phLevel = SoilPh.Alkaline;
+        }
+
     }
 
 }
