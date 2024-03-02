@@ -125,7 +125,7 @@ public class LsystemScript : MonoBehaviour
 
 
 
-    public GameObject Tree = null;
+    public GameObject Tree;
 
     [SerializeField]
     private GameObject Branch;
@@ -151,6 +151,7 @@ public class LsystemScript : MonoBehaviour
     //List to store all dictionary rules of plants
     private List<Dictionary<char, string>> rules = new List<Dictionary<char, string>>();
 
+    public Boolean generatedTree = false;
     private int iterationsLastFrame;
     private float angleLastFrame;
     private float widthLastFrame;
@@ -240,7 +241,7 @@ public class LsystemScript : MonoBehaviour
             rules.Add(rule5);
             rules.Add(rule6);
 
-            Generate();
+            //Generate();
 
         }
         catch (Exception ex) { Debug.Log(ex.ToString()); }
@@ -250,7 +251,9 @@ public class LsystemScript : MonoBehaviour
     private void Generate()
     {
 
-        Destroy(Tree);
+        //Destroy(Tree);
+
+        if (!generatedTree) { 
 
         Tree = Instantiate(TreeParent);
 
@@ -271,122 +274,130 @@ public class LsystemScript : MonoBehaviour
             sb = new StringBuilder(); // Reset string builder at every iteration
         }
 
-        //Debug.Log(currentString);
+            //Debug.Log(currentString);
 
-        foreach (char c in currentString)
-        {
-
-            switch (c)
+            foreach (char c in currentString)
             {
-                // Move forward by line length drawing a line
-                case 'F':
-                    initPosition = transform.position;
-                    transform.Translate(Vector3.up * 2 * length);
 
-                    GameObject segment = currentString[(c + 1) % currentString.Length] == 'X' || currentString[(c + 3) % currentString.Length] == 'F'
-                                          && currentString[(c + 4) % currentString.Length] == 'X' ? Instantiate(Leaf) : Instantiate(Branch);
+                switch (c)
+                {
+                    // Move forward by line length drawing a line
+                    case 'F':
+                        initPosition = transform.position;
+                        transform.Translate(Vector3.up * 2 * length);
 
-                    //GameObject segment = Instantiate(Branch);
-                    segment.transform.SetParent(Tree.transform);
-                    segment.GetComponent<LineRenderer>().SetPosition(0, initPosition);
-                    segment.GetComponent<LineRenderer>().SetPosition(1, transform.position);
-                    segment.GetComponent<LineRenderer>().startWidth = width;
-                    segment.GetComponent<LineRenderer>().endWidth = width;
+                        GameObject segment = currentString[(c + 1) % currentString.Length] == 'X' || currentString[(c + 3) % currentString.Length] == 'F'
+                                              && currentString[(c + 4) % currentString.Length] == 'X' ? Instantiate(Leaf) : Instantiate(Branch);
 
-                    break;
+                        //GameObject segment = Instantiate(Branch);
+                        segment.transform.SetParent(Tree.transform);
+                        segment.GetComponent<LineRenderer>().SetPosition(0, initPosition);
+                        segment.GetComponent<LineRenderer>().SetPosition(1, transform.position);
+                        segment.GetComponent<LineRenderer>().startWidth = width;
+                        segment.GetComponent<LineRenderer>().endWidth = width;
 
-                // No rule attach -> Just to read character
-                case 'X':
-                    break;
+                        break;
 
-                // Turn left by turning angle
-                case '+':
-                    transform.Rotate(Vector3.back * angleTurn * (1 + variance / 100 * randomRotationValues[c % randomRotationValues.Length]));
-                    break;
+                    // No rule attach -> Just to read character
+                    case 'X':
+                        break;
 
-                // Turn right by turning angle
-                case '-':
-                    transform.Rotate(Vector3.forward * angleTurn * (1 + variance / 100 * randomRotationValues[c % randomRotationValues.Length]));
-                    break;
+                    // Turn left by turning angle
+                    case '+':
+                        transform.Rotate(Vector3.back * angleTurn * (1 + variance / 100 * randomRotationValues[c % randomRotationValues.Length]));
+                        break;
 
-                // Turn forwards (into the screen) by turning angle
-                case '*':
-                    transform.Rotate(Vector3.up * 120 * (1 + variance / 100 * randomRotationValues[c % randomRotationValues.Length]));
-                    break;
+                    // Turn right by turning angle
+                    case '-':
+                        transform.Rotate(Vector3.forward * angleTurn * (1 + variance / 100 * randomRotationValues[c % randomRotationValues.Length]));
+                        break;
 
-                // Turn backwards (out of screen) by turning angle
-                case '/':
-                    transform.Rotate(Vector3.down * 120 * (1 + variance / 100 * randomRotationValues[c % randomRotationValues.Length]));
-                    break;
+                    // Turn forwards (into the screen) by turning angle
+                    case '*':
+                        transform.Rotate(Vector3.up * 120 * (1 + variance / 100 * randomRotationValues[c % randomRotationValues.Length]));
+                        break;
 
-                // Draw pink leaves
-                case '#':
-                    // Drawing the pink leaves with LeafPink Line Renderer
-                    nextPos = new Vector3(10, 10, 10);
+                    // Turn backwards (out of screen) by turning angle
+                    case '/':
+                        transform.Rotate(Vector3.down * 120 * (1 + variance / 100 * randomRotationValues[c % randomRotationValues.Length]));
+                        break;
 
-                    currentPos = gameObject.transform.position;
+                    // Draw pink leaves
+                    case '#':
+                        // Drawing the pink leaves with LeafPink Line Renderer
+                        nextPos = new Vector3(10, 10, 10);
 
-                    GameObject leafPink = Instantiate(LeafPink);
-                    leafPink.transform.SetParent(Tree.transform);
-                    leafPink.GetComponent<LineRenderer>().SetPosition(0, currentPos);
-                    leafPink.GetComponent<LineRenderer>().SetPosition(1, currentPos + nextPos);
-                    leafPink.GetComponent<LineRenderer>().startWidth = 8;
-                    leafPink.GetComponent<LineRenderer>().endWidth = 1;
+                        currentPos = gameObject.transform.position;
 
-                    break;
+                        GameObject leafPink = Instantiate(LeafPink);
+                        leafPink.transform.SetParent(Tree.transform);
+                        leafPink.GetComponent<LineRenderer>().SetPosition(0, currentPos);
+                        leafPink.GetComponent<LineRenderer>().SetPosition(1, currentPos + nextPos);
+                        leafPink.GetComponent<LineRenderer>().startWidth = 8;
+                        leafPink.GetComponent<LineRenderer>().endWidth = 1;
 
-                // Draw purple leaves
-                case '^':
-                    // Drawing the purple leaves with Leaf Line Renderer
-                    nextPos = new Vector3(10, 10, 10);
+                        break;
 
-                    currentPos = gameObject.transform.position;
+                    // Draw purple leaves
+                    case '^':
+                        // Drawing the purple leaves with Leaf Line Renderer
+                        nextPos = new Vector3(10, 10, 10);
 
-                    GameObject leafPurple = Instantiate(LeafPurple);
-                    leafPurple.transform.SetParent(Tree.transform);
-                    leafPurple.GetComponent<LineRenderer>().SetPosition(0, currentPos);
-                    leafPurple.GetComponent<LineRenderer>().SetPosition(1, currentPos + nextPos);
-                    leafPurple.GetComponent<LineRenderer>().startWidth = 8;
-                    leafPurple.GetComponent<LineRenderer>().endWidth = 1;
+                        currentPos = gameObject.transform.position;
 
-                    break;
+                        GameObject leafPurple = Instantiate(LeafPurple);
+                        leafPurple.transform.SetParent(Tree.transform);
+                        leafPurple.GetComponent<LineRenderer>().SetPosition(0, currentPos);
+                        leafPurple.GetComponent<LineRenderer>().SetPosition(1, currentPos + nextPos);
+                        leafPurple.GetComponent<LineRenderer>().startWidth = 8;
+                        leafPurple.GetComponent<LineRenderer>().endWidth = 1;
 
-                // Push current state onto TransformationsInfo() stack
-                case '[':
-                    transformStack.Push(new TransformationsInfo()
-                    {
-                        position = transform.position,
-                        rotation = transform.rotation
-                    });
+                        break;
 
-                    break;
+                    // Push current state onto TransformationsInfo() stack
+                    case '[':
+                        transformStack.Push(new TransformationsInfo()
+                        {
+                            position = transform.position,
+                            rotation = transform.rotation
+                        });
 
-                // Pop current state from the stack
-                case ']':
-                    TransformationsInfo transforms = transformStack.Pop();
-                    transform.position = transforms.position;
-                    transform.rotation = transforms.rotation;
+                        break;
 
-                    // Drawing the leaves with Leaf Line Renderer
-                    nextPos = new Vector3(10, 10, 10);
+                    // Pop current state from the stack
+                    case ']':
+                        TransformationsInfo transforms = transformStack.Pop();
+                        transform.position = transforms.position;
+                        transform.rotation = transforms.rotation;
 
-                    currentPos = gameObject.transform.position;
+                        // Drawing the leaves with Leaf Line Renderer
+                        nextPos = new Vector3(10, 10, 10);
 
-                    GameObject leaf = Instantiate(Leaf);
-                    leaf.transform.SetParent(Tree.transform);
-                    leaf.GetComponent<LineRenderer>().SetPosition(0, currentPos);
-                    leaf.GetComponent<LineRenderer>().SetPosition(1, currentPos + nextPos);
-                    leaf.GetComponent<LineRenderer>().startWidth = 8;
-                    leaf.GetComponent<LineRenderer>().endWidth = 1;
+                        currentPos = gameObject.transform.position;
 
-                    break;
+                        GameObject leaf = Instantiate(Leaf);
+                        leaf.transform.SetParent(Tree.transform);
+                        leaf.GetComponent<LineRenderer>().SetPosition(0, currentPos);
+                        leaf.GetComponent<LineRenderer>().SetPosition(1, currentPos + nextPos);
+                        leaf.GetComponent<LineRenderer>().startWidth = 8;
+                        leaf.GetComponent<LineRenderer>().endWidth = 1;
 
-                default:
-                    throw new InvalidOperationException("Invalid L-System Operation");
+                        break;
+
+                    default:
+                        throw new InvalidOperationException("Invalid L-System Operation");
+                }
+
             }
 
+            generatedTree = true;
 
-        }
+        } 
+    }
+
+    public Boolean statusTreeGeneration()
+    {
+        return generatedTree;
     }
 
 
@@ -404,11 +415,10 @@ public class LsystemScript : MonoBehaviour
         //    Generate();
         //}
 
-        // generate and flag variable save it as a mesh (generated only once and saved as a mesh)
         if (plantSeed == PlantSeed.Rhododendron && fertiliserType == FertiliserType.Type1 && waterAmount == 2) 
         {
             currentPlant = rules[0];
-            Generate();
+            Generate(); 
         } 
 
         else if (plantSeed == PlantSeed.Camellia && fertiliserType == FertiliserType.Type2 && waterAmount == 3)
