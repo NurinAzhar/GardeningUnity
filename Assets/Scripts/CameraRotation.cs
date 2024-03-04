@@ -27,14 +27,14 @@ public class CameraRotation : MonoBehaviour
         {
             transform.RotateAround(gardenBase.transform.position, Vector3.up, speed * Time.deltaTime);
         }
-        if (Input.GetKey("up"))
-        {
-            transform.RotateAround(gardenBase.transform.position, Vector3.right, speed * Time.deltaTime);
-        }
-        if (Input.GetKey("down"))
-        {
-            transform.RotateAround(gardenBase.transform.position, Vector3.left, speed * Time.deltaTime);
-        }
+        //if (Input.GetKey("up"))
+        //{
+        //    transform.RotateAround(gardenBase.transform.position, Vector3.right, speed * Time.deltaTime);
+        //}
+        //if (Input.GetKey("down"))
+        //{
+        //    transform.RotateAround(gardenBase.transform.position, Vector3.left, speed * Time.deltaTime);
+        //}
         
     }
 }
