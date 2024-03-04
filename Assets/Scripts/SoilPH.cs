@@ -76,11 +76,11 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         // Keep phRange out of the negatives and out of the range of 0 - 14
         if (phRange < 0f)
         {
-            phRange = UnityEngine.Random.Range(0.1f, 0.9f);
+            phRange = 0.1f;
         } 
         else if  (phRange > 14f)
         {
-            phRange = UnityEngine.Random.Range(13.0f, 14f);
+            phRange = 14f;
         } 
         else if (phRange >= 0 && phRange <= 6.9)
         {
