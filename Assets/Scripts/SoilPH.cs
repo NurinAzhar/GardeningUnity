@@ -99,4 +99,9 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     }
 
+    public SoilPh GetPhLevel()
+    {
+        return this.phLevel;
+    }
+
 }

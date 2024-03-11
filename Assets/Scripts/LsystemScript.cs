@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 using UnityEditor.ShaderKeywordFilter;
 using System.Data;
 using TMPro;
+using System.Timers;
 
 
 // Store values of positions and rotations of plant by calling in a stack
@@ -123,8 +124,6 @@ public class LsystemScript : MonoBehaviour
     }
 
 
-
-
     public GameObject Tree;
 
     [SerializeField]
@@ -161,6 +160,7 @@ public class LsystemScript : MonoBehaviour
     private string currentString = string.Empty;
     private Vector3 initPosition = Vector3.zero;
     private float[] randomRotationValues = new float[100];
+    private SoilPH.SoilPh soilCondition = new SoilPH.SoilPh();
 
     [SerializeField]
     private FertiliserType currentFertiliserType;
@@ -251,9 +251,7 @@ public class LsystemScript : MonoBehaviour
     private void Generate()
     {
 
-        //Destroy(Tree);
-
-        if (!generatedTree) { 
+        Destroy(Tree);
 
         Tree = Instantiate(TreeParent);
 
@@ -390,9 +388,6 @@ public class LsystemScript : MonoBehaviour
 
             }
 
-            generatedTree = true;
-
-        } 
     }
 
     public Boolean statusTreeGeneration()
@@ -404,6 +399,10 @@ public class LsystemScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        SoilPH SoilPH = gameObject.GetComponentInParent<SoilPH>();
+        soilCondition = SoilPH.phLevel;
+
         fertiliserType = currentFertiliserType;
         plantSeed = currentPlantSeed;
 
@@ -415,40 +414,68 @@ public class LsystemScript : MonoBehaviour
         //    Generate();
         //}
 
-        if (plantSeed == PlantSeed.Rhododendron && fertiliserType == FertiliserType.Type1 && waterAmount == 2) 
-        {
-            currentPlant = rules[0];
-            Generate(); 
-        } 
+        //instead of boolean, it's generated when there's a change in value
+        //every time player selects from menu, sets boolean to false
+        //every time change in cell -> set boolean to false
+        //fix soil issue
 
-        else if (plantSeed == PlantSeed.Camellia && fertiliserType == FertiliserType.Type2 && waterAmount == 3)
+        if (!generatedTree)
         {
-            currentPlant = rules[1];
-            Generate();
-        }
+            if (soilCondition == SoilPH.SoilPh.Acidic)
+            {
 
-        else if (plantSeed == PlantSeed.Azalea && fertiliserType == FertiliserType.Type3 && waterAmount == 3)
-        {
-            currentPlant = rules[2];
-            Generate();
-        }
+                if (plantSeed == PlantSeed.Rhododendron && fertiliserType == FertiliserType.Type1 && waterAmount == 2)
+                {
+                    currentPlant = rules[0];
+                    Generate();
+                    generatedTree = true;
 
-        else if (plantSeed == PlantSeed.MoorGrass && fertiliserType == FertiliserType.Type4 && waterAmount == 2)
-        {
-            currentPlant = rules[3];
-            Generate();
-        }
+                }
 
-        else if (plantSeed == PlantSeed.Lavender && fertiliserType == FertiliserType.Type3 && waterAmount == 3)
-        {
-            currentPlant = rules[4];
-            Generate();
-        }
+                else if (plantSeed == PlantSeed.Camellia && fertiliserType == FertiliserType.Type2 && waterAmount == 3)
+                {
+                    currentPlant = rules[1];
+                    Generate();
+                    generatedTree = true;
+                }
 
-        else if (plantSeed == PlantSeed.Phacelia && fertiliserType == FertiliserType.Type1 && waterAmount == 2)
-        {
-            currentPlant = rules[5];
-            Generate();
+                else if (plantSeed == PlantSeed.Azalea && fertiliserType == FertiliserType.Type3 && waterAmount == 3)
+                {
+                    currentPlant = rules[2];
+                    Generate();
+                    generatedTree = true;
+                }
+
+            }
+            else if (soilCondition == SoilPH.SoilPh.Alkaline)
+            {
+
+                if (plantSeed == PlantSeed.MoorGrass && fertiliserType == FertiliserType.Type4 && waterAmount == 2)
+                {
+                    currentPlant = rules[3];
+                    Generate();
+                    generatedTree = true;
+                }
+
+                else if (plantSeed == PlantSeed.Lavender && fertiliserType == FertiliserType.Type3 && waterAmount == 3)
+                {
+                    currentPlant = rules[4];
+                    Generate();
+                    generatedTree = true;
+                }
+
+                else if (plantSeed == PlantSeed.Phacelia && fertiliserType == FertiliserType.Type1 && waterAmount == 2)
+                {
+                    currentPlant = rules[5];
+                    Generate();
+                    generatedTree = true;
+                }
+            }
+
+        } else {
+
+            generatedTree = true;
+
         }
 
     }
