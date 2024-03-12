@@ -161,6 +161,7 @@ public class LsystemScript : MonoBehaviour
     private Vector3 initPosition = Vector3.zero;
     private float[] randomRotationValues = new float[100];
     private SoilPH.SoilPh soilCondition = new SoilPH.SoilPh();
+    private Boolean soilTransform;
 
     [SerializeField]
     private FertiliserType currentFertiliserType;
@@ -400,6 +401,10 @@ public class LsystemScript : MonoBehaviour
     void Update()
     {
 
+        ScaleSoil ScaleSoil = GetComponentInParent<ScaleSoil>();
+        soilTransform = ScaleSoil.hasChanged;
+
+
         SoilPH SoilPH = gameObject.GetComponentInParent<SoilPH>();
         soilCondition = SoilPH.phLevel;
 
@@ -414,13 +419,11 @@ public class LsystemScript : MonoBehaviour
         //    Generate();
         //}
 
-        //instead of boolean, it's generated when there's a change in value
-        //every time player selects from menu, sets boolean to false
-        //every time change in cell -> set boolean to false
+        
         //fix soil issue
-
-        if (!generatedTree)
+        if (!generatedTree || soilTransform) //ScaleSoil.transform.hasChanged
         {
+           
             if (soilCondition == SoilPH.SoilPh.Acidic)
             {
 
@@ -469,7 +472,9 @@ public class LsystemScript : MonoBehaviour
                     currentPlant = rules[5];
                     Generate();
                     generatedTree = true;
+                    Debug.Log(gameObject.name + soilTransform);
                 }
+
             }
 
         } else {

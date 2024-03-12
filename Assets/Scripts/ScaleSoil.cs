@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,44 +13,65 @@ public class ScaleSoil : MonoBehaviour
     public Vector3 unscaledSoil;
     public Vector3 currentSoil;
     public Boolean originalSoilState = false;
+    public Boolean hasChanged = false;
+    public Vector3 soilScale;
 
-    LsystemScript lScript;
-
-    public Boolean generatedTreeExists;
-
-    //private void Start()
-    //{
-    //    LsystemScript lScript = new LsystemScript();
-
-    //}
 
     public void ChangeSoil()
     {
-        //generatedTreeExists = lScript.statusTreeGeneration();
 
         Vector3 unscaledSoil = new Vector3(379.7141f, 2.188555f, 390.2904f);
+        hasChanged = true;
 
-        //Change state of soil only when a plant has yet to be generated
-        //if (!generatedTreeExists)
+        if (!originalSoilState)
+       {
+            transform.localScale = scaledSoil;
+            originalSoilState = true;
+                
+            currentSoil = scaledSoil;
+
+            //hasChanged = true;
+
+       }
+       else if (originalSoilState)
+       {
+            transform.localScale = unscaledSoil;
+            originalSoilState = false;
+
+            currentSoil = unscaledSoil;
+
+            //hasChanged = true;
+       }
+
+    }
+
+    public void checkChange()
+    {
+
+        //if (gameObject.transform.localScale != currentSoil)
         //{
-            if (!originalSoilState)
-            {
-                transform.localScale = scaledSoil;
-                originalSoilState = true;
+        //    hasChanged = true;
+        //    currentSoil = transform.localScale;
 
-            }
-            else if (originalSoilState)
-            {
-                transform.localScale = unscaledSoil;
-                originalSoilState = false;
-            }
-
-        //}
-        //else
+        //} 
+        //else if (gameObject.transform.localScale == currentSoil)
         //{
-        //    print("Can't change state of soil after plant has been generated!");
+        //    hasChanged = false;
         //}
 
+        //if (hasChanged)
+        //{
+        //    hasChanged = false;
+        //}
+
+    }
+
+    public void Update()
+    {
+        if (hasChanged)
+        {
+            hasChanged = false;
+        }
     }
 
 }
