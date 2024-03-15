@@ -15,6 +15,7 @@ public class ScaleSoil : MonoBehaviour
     public Boolean originalSoilState = false;
     public Boolean hasChanged = false;
     public Vector3 soilScale;
+    public int timeDelay = 1;
 
 
     public void ChangeSoil()
@@ -30,8 +31,6 @@ public class ScaleSoil : MonoBehaviour
                 
             currentSoil = scaledSoil;
 
-            //hasChanged = true;
-
        }
        else if (originalSoilState)
        {
@@ -40,7 +39,6 @@ public class ScaleSoil : MonoBehaviour
 
             currentSoil = unscaledSoil;
 
-            //hasChanged = true;
        }
 
     }
@@ -48,30 +46,14 @@ public class ScaleSoil : MonoBehaviour
     public void checkChange()
     {
 
-        //if (gameObject.transform.localScale != currentSoil)
-        //{
-        //    hasChanged = true;
-        //    currentSoil = transform.localScale;
-
-        //} 
-        //else if (gameObject.transform.localScale == currentSoil)
-        //{
-        //    hasChanged = false;
-        //}
-
-        //if (hasChanged)
-        //{
-        //    hasChanged = false;
-        //}
+        hasChanged = false;
 
     }
 
     public void Update()
     {
-        if (hasChanged)
-        {
-            hasChanged = false;
-        }
+        // 1 second delay in changing boolean hasChanged back to false
+        Invoke("checkChange", 1);
     }
 
 }

@@ -401,12 +401,11 @@ public class LsystemScript : MonoBehaviour
     void Update()
     {
 
-        ScaleSoil ScaleSoil = GetComponentInParent<ScaleSoil>();
-        soilTransform = ScaleSoil.hasChanged;
-
-
         SoilPH SoilPH = gameObject.GetComponentInParent<SoilPH>();
         soilCondition = SoilPH.phLevel;
+
+        ScaleSoil ScaleSoil = GetComponentInParent<ScaleSoil>();
+        soilTransform = ScaleSoil.hasChanged;
 
         fertiliserType = currentFertiliserType;
         plantSeed = currentPlantSeed;
@@ -420,8 +419,7 @@ public class LsystemScript : MonoBehaviour
         //}
 
         
-        //fix soil issue
-        if (!generatedTree || soilTransform) //ScaleSoil.transform.hasChanged
+        if (!generatedTree || soilTransform) 
         {
            
             if (soilCondition == SoilPH.SoilPh.Acidic)
@@ -432,7 +430,6 @@ public class LsystemScript : MonoBehaviour
                     currentPlant = rules[0];
                     Generate();
                     generatedTree = true;
-
                 }
 
                 else if (plantSeed == PlantSeed.Camellia && fertiliserType == FertiliserType.Type2 && waterAmount == 3)
@@ -472,7 +469,6 @@ public class LsystemScript : MonoBehaviour
                     currentPlant = rules[5];
                     Generate();
                     generatedTree = true;
-                    Debug.Log(gameObject.name + soilTransform);
                 }
 
             }
