@@ -11,7 +11,6 @@ public class GameMenuOpen : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("M key pressed");
 
             if (menu.activeInHierarchy)
             {
