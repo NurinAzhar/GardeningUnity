@@ -26,7 +26,6 @@ public class PestGenerator : MonoBehaviour
         seconds = UnityEngine.Random.Range(5f, 7f);
 
         yield return new WaitForSeconds((int)seconds);
-        print(seconds);
 
         pest.SetActive(true);
 
@@ -62,7 +61,7 @@ public class PestGenerator : MonoBehaviour
 
         } else
         {
-            pest.SetActive(false);
+            //pest.SetActive(false);
         }
     }
 

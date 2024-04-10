@@ -396,6 +396,13 @@ public class LsystemScript : MonoBehaviour
         return generatedTree;
     }
 
+    public void Reset()
+    {
+        plantSeed = 0;
+        fertiliserType = 0;
+        waterAmount = 0;
+    }
+
 
     // Update is called once per frame
     void Update()
