@@ -18,6 +18,7 @@ public class ScaleSoil : MonoBehaviour
     public int timeDelay = 1;
 
     public GameObject pest;
+    public GameObject rowCover;
 
 
     public void ChangeSoil()
@@ -42,6 +43,12 @@ public class ScaleSoil : MonoBehaviour
                 pest.SetActive(false);
             }
 
+            // Handle row cover scaling
+            if (rowCover.activeInHierarchy)
+            {
+                rowCover.transform.localScale = new Vector3(rowCover.transform.localScale.x, 1.3f, rowCover.transform.localScale.z);
+            }  
+
         }
        else if (originalSoilState)
        {
@@ -49,6 +56,12 @@ public class ScaleSoil : MonoBehaviour
             originalSoilState = false;
 
             currentSoil = unscaledSoil;
+
+            // Handle row cover scaling
+            if (rowCover.activeInHierarchy)
+            {
+                rowCover.transform.localScale = new Vector3(rowCover.transform.localScale.x, 200f, rowCover.transform.localScale.z);
+            }
 
         }
 
