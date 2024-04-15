@@ -59,10 +59,8 @@ public class PestGenerator : MonoBehaviour
                 StartCoroutine(Spawn());
             }
 
-        } else
-        {
-            //pest.SetActive(false);
         }
+
     }
 
 }

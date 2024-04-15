@@ -11,6 +11,7 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public TMP_Text text;
     //GameObject currentDropped = null;
     public SoilPh phLevel;
+    public GameObject pest;
 
     public enum SoilPh
     {
@@ -60,6 +61,16 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
                 print("Sodium Nitrate detected");
 
                 phRange = phRange + UnityEngine.Random.Range(3f, 5f);
+            }
+            else if (currentDropped == GameObject.Find("Pesticide")) //Handles Pesticide detection
+            {
+                GetComponent<PestGenerator>().StopAllCoroutines();
+
+                if (pest.activeInHierarchy)
+                {
+                    GetComponentInChildren<PestBehaviour>().StopAllCoroutines();
+                    pest.SetActive(false);
+                }
             }
         } 
 

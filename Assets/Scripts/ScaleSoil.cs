@@ -17,6 +17,8 @@ public class ScaleSoil : MonoBehaviour
     public Vector3 soilScale;
     public int timeDelay = 1;
 
+    public GameObject pest;
+
 
     public void ChangeSoil()
     {
@@ -31,7 +33,16 @@ public class ScaleSoil : MonoBehaviour
                 
             currentSoil = scaledSoil;
 
-       }
+            // Handle deactivation of spawning/active pests 
+            GetComponent<PestGenerator>().StopAllCoroutines();
+
+            if (pest.activeInHierarchy)
+            {
+                GetComponentInChildren<PestBehaviour>().StopAllCoroutines();
+                pest.SetActive(false);
+            }
+
+        }
        else if (originalSoilState)
        {
             transform.localScale = unscaledSoil;
@@ -39,7 +50,7 @@ public class ScaleSoil : MonoBehaviour
 
             currentSoil = unscaledSoil;
 
-       }
+        }
 
     }
 
