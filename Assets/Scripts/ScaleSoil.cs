@@ -46,7 +46,8 @@ public class ScaleSoil : MonoBehaviour
             // Handle row cover scaling
             if (rowCover.activeInHierarchy)
             {
-                rowCover.transform.localScale = new Vector3(rowCover.transform.localScale.x, 1.3f, rowCover.transform.localScale.z);
+                rowCover.transform.localPosition = new Vector3(rowCover.transform.localPosition.x, 0.995f, rowCover.transform.localPosition.z);
+                rowCover.transform.localScale = new Vector3(rowCover.transform.localScale.x, 0.4f, rowCover.transform.localScale.z);
             }  
 
         }
@@ -60,7 +61,8 @@ public class ScaleSoil : MonoBehaviour
             // Handle row cover scaling
             if (rowCover.activeInHierarchy)
             {
-                rowCover.transform.localScale = new Vector3(rowCover.transform.localScale.x, 200f, rowCover.transform.localScale.z);
+                rowCover.transform.localPosition = new Vector3(rowCover.transform.localPosition.x, 98f, rowCover.transform.localPosition.z);
+                rowCover.transform.localScale = new Vector3(rowCover.transform.localScale.x, 100f, rowCover.transform.localScale.z);
             }
 
         }

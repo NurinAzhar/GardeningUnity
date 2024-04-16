@@ -8,6 +8,7 @@ public class PestGenerator : MonoBehaviour
 {
     public GameObject pest;
     public GameObject soilPos;
+    public GameObject RowCover;
 
     public Vector3 scaledSoil = new Vector3(379.7141f, 500f, 390.2904f); //soil lifted scaling
 
@@ -52,7 +53,7 @@ public class PestGenerator : MonoBehaviour
         checkSoil();
 
         //might need to check up on these again
-        if (generatedTree && !soilLifted)
+        if (generatedTree && !soilLifted && !RowCover.activeInHierarchy)
         {
             if (!pest.activeInHierarchy)
             {

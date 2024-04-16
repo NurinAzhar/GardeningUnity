@@ -13,6 +13,9 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public SoilPh phLevel;
     public GameObject pest;
 
+    public GameObject rowCover;
+    public GameObject FRCButton;
+
     public enum SoilPh
     {
         Neutral,
@@ -45,7 +48,7 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
         GameObject currentDropped = eventData.pointerDrag;
 
-        GameObject sodiumNitrate = GameObject.Find("SodiumNitrate");
+        FRCButton = GameObject.Find("FRC Button");
 
         if (currentDropped != null)
         {
@@ -70,6 +73,19 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
                 {
                     GetComponentInChildren<PestBehaviour>().StopAllCoroutines();
                     pest.SetActive(false);
+                }
+            }
+            else if (currentDropped == GameObject.Find("FRC Button"))
+            {
+                if (!rowCover.activeInHierarchy)
+                {
+                    rowCover.SetActive(true);
+                    FRCButton.GetComponent<CopyDragDestroyScript>().count += 1;
+                } 
+                else
+                {
+                    rowCover.SetActive(false);
+                    FRCButton.GetComponent<CopyDragDestroyScript>().count -= 1;
                 }
             }
         } 
