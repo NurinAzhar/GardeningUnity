@@ -123,7 +123,7 @@ public class LsystemScript : MonoBehaviour
         waterAmount = 3;
     }
 
-
+    
     public GameObject Tree;
 
     [SerializeField]
@@ -162,6 +162,10 @@ public class LsystemScript : MonoBehaviour
     private float[] randomRotationValues = new float[100];
     private SoilPH.SoilPh soilCondition = new SoilPH.SoilPh();
     private Boolean soilTransform;
+
+    // Light intensity set at initial gamescene, 1 == low ; 2 == high
+    [SerializeField] 
+    public int lightIntensity = 0; 
 
     [SerializeField]
     private FertiliserType currentFertiliserType;
@@ -432,21 +436,21 @@ public class LsystemScript : MonoBehaviour
             if (soilCondition == SoilPH.SoilPh.Acidic)
             {
 
-                if (plantSeed == PlantSeed.Rhododendron && fertiliserType == FertiliserType.Type1 && waterAmount == 2)
+                if (plantSeed == PlantSeed.Rhododendron && fertiliserType == FertiliserType.Type1 && waterAmount == 2 && lightIntensity == 1)
                 {
                     currentPlant = rules[0];
                     Generate();
                     generatedTree = true;
                 }
 
-                else if (plantSeed == PlantSeed.Camellia && fertiliserType == FertiliserType.Type2 && waterAmount == 3)
+                else if (plantSeed == PlantSeed.Camellia && fertiliserType == FertiliserType.Type2 && waterAmount == 3 && lightIntensity == 2)
                 {
                     currentPlant = rules[1];
                     Generate();
                     generatedTree = true;
                 }
 
-                else if (plantSeed == PlantSeed.Azalea && fertiliserType == FertiliserType.Type3 && waterAmount == 3)
+                else if (plantSeed == PlantSeed.Azalea && fertiliserType == FertiliserType.Type3 && waterAmount == 3 && lightIntensity == 2)
                 {
                     currentPlant = rules[2];
                     Generate();
@@ -457,21 +461,21 @@ public class LsystemScript : MonoBehaviour
             else if (soilCondition == SoilPH.SoilPh.Alkaline)
             {
 
-                if (plantSeed == PlantSeed.MoorGrass && fertiliserType == FertiliserType.Type4 && waterAmount == 2)
+                if (plantSeed == PlantSeed.MoorGrass && fertiliserType == FertiliserType.Type4 && waterAmount == 2 && lightIntensity == 1)
                 {
                     currentPlant = rules[3];
                     Generate();
                     generatedTree = true;
                 }
 
-                else if (plantSeed == PlantSeed.Lavender && fertiliserType == FertiliserType.Type3 && waterAmount == 3)
+                else if (plantSeed == PlantSeed.Lavender && fertiliserType == FertiliserType.Type3 && waterAmount == 3 && lightIntensity == 2)
                 {
                     currentPlant = rules[4];
                     Generate();
                     generatedTree = true;
                 }
 
-                else if (plantSeed == PlantSeed.Phacelia && fertiliserType == FertiliserType.Type1 && waterAmount == 2)
+                else if (plantSeed == PlantSeed.Phacelia && fertiliserType == FertiliserType.Type1 && waterAmount == 2 && lightIntensity == 1)
                 {
                     currentPlant = rules[5];
                     Generate();

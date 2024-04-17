@@ -7,6 +7,7 @@ public class HoverColourChange : MonoBehaviour, IPointerEnterHandler, IPointerEx
 {
     private Renderer materialRenderer;
     private Color newMaterialColour = Color.yellow;
+    private Color newMaterialColourLow = Color.blue;
     private Color originalMaterialColour;
 
     private void Start()
@@ -17,7 +18,17 @@ public class HoverColourChange : MonoBehaviour, IPointerEnterHandler, IPointerEx
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        materialRenderer.material.color = newMaterialColour;
+        int lightIntensity = gameObject.GetComponentInChildren<LsystemScript>().lightIntensity;
+
+        if (lightIntensity <= 1) // Highlight blue for low light shaded ground
+        {
+            materialRenderer.material.color = newMaterialColourLow;
+        }
+        else if (lightIntensity > 1) // Highlight yellow for high light shaded ground
+        {
+            materialRenderer.material.color = newMaterialColour;
+        }
+
     }
 
     public void OnPointerExit(PointerEventData eventData)

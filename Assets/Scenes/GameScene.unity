@@ -280,6 +280,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 1
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -961,6 +962,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 1
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -2952,7 +2954,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 69, y: -34}
+  m_AnchoredPosition: {x: 69, y: -51}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &339736347
@@ -3209,6 +3211,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 1
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -3468,7 +3471,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a860711effb666d43bfc97e11e329520, type: 2}
+  - {fileID: 2100000, guid: 39e164b34703d9d48a57a0a3d6d71a16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3945,6 +3948,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 1
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -4221,7 +4225,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a860711effb666d43bfc97e11e329520, type: 2}
+  - {fileID: 2100000, guid: 39e164b34703d9d48a57a0a3d6d71a16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4597,7 +4601,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a860711effb666d43bfc97e11e329520, type: 2}
+  - {fileID: 2100000, guid: 39e164b34703d9d48a57a0a3d6d71a16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5546,6 +5550,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 2
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -6547,7 +6552,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a860711effb666d43bfc97e11e329520, type: 2}
+  - {fileID: 2100000, guid: 39e164b34703d9d48a57a0a3d6d71a16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6832,6 +6837,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 2
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -7454,6 +7460,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 2
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -9746,10 +9753,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: '-> Ericaceous plants are plants that hates chalky and alkaline soils,
-    therefore they prefer acidic environments (Soil pH > 7)
+    therefore they prefer acidic environments (Soil pH < 7)
 
     -> Non-ericacous
-    plants prefer alkaline soils (Soil pH < 7)
+    plants prefer alkaline soils (Soil pH > 7)
 
     -> Plants with bushy leaves need
     high amount of Nitrogen (N) in their fertiliser
@@ -9758,7 +9765,9 @@ MonoBehaviour:
     light intensity need Phosphorus (P)
 
     -> Plants that grow flowers need high
-    Potassium (K)'
+    Potassium (K)
+
+    -> Plants with more leaves require higher water intake'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9821,7 +9830,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -490.7705, y: -138.80399, z: -479.4182, w: -3.7441711}
+  m_margin: {x: -490.7705, y: -138.80399, z: -479.4182, w: 0.89907837}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -10709,7 +10718,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a860711effb666d43bfc97e11e329520, type: 2}
+  - {fileID: 2100000, guid: 39e164b34703d9d48a57a0a3d6d71a16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11367,6 +11376,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 1
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -11527,6 +11537,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 2
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -12114,6 +12125,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 1
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -12568,7 +12580,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a860711effb666d43bfc97e11e329520, type: 2}
+  - {fileID: 2100000, guid: 39e164b34703d9d48a57a0a3d6d71a16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13362,6 +13374,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 2
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
@@ -14929,6 +14942,7 @@ MonoBehaviour:
   LeafPurple: {fileID: 6375564977017468465, guid: 338dc98c55710d44aabc4607809bbcc9, type: 3}
   TreeParent: {fileID: 5734716890941980540, guid: 6d72c342812f6c94ba4b436aab66ddaa, type: 3}
   generatedTree: 0
+  lightIntensity: 2
   currentFertiliserType: 0
   currentPlantSeed: 0
   waterAmount: 0
