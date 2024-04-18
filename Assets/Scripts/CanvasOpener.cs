@@ -8,10 +8,10 @@ using UnityEngine.EventSystems;
 public class CanvasOpener : MonoBehaviour , IPointerClickHandler
 {
     public static GameObject Canvas11, Canvas12, Canvas13, Canvas14, Canvas21, Canvas22, Canvas23, Canvas24,
-                      Canvas31, Canvas32, Canvas33, Canvas34, Canvas41, Canvas42, Canvas43, Canvas44;
+                      Canvas31, Canvas32, Canvas33, Canvas34;
 
     public List<GameObject> canvases = new List<GameObject>{ Canvas11, Canvas12, Canvas13, Canvas14, Canvas21, Canvas22, Canvas23, Canvas24,
-                      Canvas31, Canvas32, Canvas33, Canvas34, Canvas41, Canvas42, Canvas43, Canvas44 };
+                      Canvas31, Canvas32, Canvas33, Canvas34 };
 
 
     public GameObject Canvas;

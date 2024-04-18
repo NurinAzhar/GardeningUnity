@@ -12,7 +12,7 @@ public class ScaleSoil : MonoBehaviour
     public Vector3 scaledSoil = new Vector3 (379.7141f, 500f, 390.2904f);
     public Vector3 unscaledSoil;
     public Vector3 currentSoil;
-    public Boolean originalSoilState = false;
+    public Boolean liftedSoilState = false;
     public Boolean hasChanged = false;
     public Vector3 soilScale;
     public int timeDelay = 1;
@@ -27,10 +27,10 @@ public class ScaleSoil : MonoBehaviour
         Vector3 unscaledSoil = new Vector3(379.7141f, 2.188555f, 390.2904f);
         hasChanged = true;
 
-        if (!originalSoilState)
+        if (!liftedSoilState)
        {
             transform.localScale = scaledSoil;
-            originalSoilState = true;
+            liftedSoilState = true;
                 
             currentSoil = scaledSoil;
 
@@ -51,10 +51,10 @@ public class ScaleSoil : MonoBehaviour
             }  
 
         }
-       else if (originalSoilState)
+       else if (liftedSoilState)
        {
             transform.localScale = unscaledSoil;
-            originalSoilState = false;
+            liftedSoilState = false;
 
             currentSoil = unscaledSoil;
 

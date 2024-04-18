@@ -53,7 +53,7 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
         FRCButton = GameObject.Find("FRC Button");
         count = FRCButton.GetComponent<CopyDragDestroyScript>().count;
-        liftedSoilState = GetComponent<ScaleSoil>().originalSoilState;
+        liftedSoilState = GetComponent<ScaleSoil>().liftedSoilState;
 
         if (currentDropped != null)
         {
