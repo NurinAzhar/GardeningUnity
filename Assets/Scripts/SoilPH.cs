@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,6 +17,7 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public GameObject rowCover;
     public GameObject FRCButton;
     public int count;
+    public Boolean liftedSoilState;
 
     public enum SoilPh
     {
@@ -51,6 +53,7 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
         FRCButton = GameObject.Find("FRC Button");
         count = FRCButton.GetComponent<CopyDragDestroyScript>().count;
+        liftedSoilState = GetComponent<ScaleSoil>().originalSoilState;
 
         if (currentDropped != null)
         {
@@ -81,8 +84,20 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             {
                 if (!rowCover.activeInHierarchy && count < 3)
                 {
-                    rowCover.SetActive(true);
-                    FRCButton.GetComponent<CopyDragDestroyScript>().count += 1;
+                    if (liftedSoilState)
+                    {
+                        // Reset position of row cover depending on the current soil lifted
+                        rowCover.transform.localPosition = new Vector3(rowCover.transform.localPosition.x, 0.995f, rowCover.transform.localPosition.z);
+                        rowCover.transform.localScale = new Vector3(rowCover.transform.localScale.x, 0.4f, rowCover.transform.localScale.z);
+
+                        rowCover.SetActive(true);
+                        FRCButton.GetComponent<CopyDragDestroyScript>().count += 1;
+
+                    } else if (!liftedSoilState)
+                    {
+                        rowCover.SetActive(true);
+                        FRCButton.GetComponent<CopyDragDestroyScript>().count += 1;
+                    }
                 }
                 else
                 {
