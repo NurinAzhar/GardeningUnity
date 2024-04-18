@@ -15,6 +15,7 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public GameObject rowCover;
     public GameObject FRCButton;
+    public int count;
 
     public enum SoilPh
     {
@@ -49,6 +50,7 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         GameObject currentDropped = eventData.pointerDrag;
 
         FRCButton = GameObject.Find("FRC Button");
+        count = FRCButton.GetComponent<CopyDragDestroyScript>().count;
 
         if (currentDropped != null)
         {
@@ -77,15 +79,18 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             }
             else if (currentDropped == GameObject.Find("FRC Button"))
             {
-                if (!rowCover.activeInHierarchy)
+                if (!rowCover.activeInHierarchy && count < 3)
                 {
                     rowCover.SetActive(true);
                     FRCButton.GetComponent<CopyDragDestroyScript>().count += 1;
-                } 
+                }
                 else
                 {
-                    rowCover.SetActive(false);
-                    FRCButton.GetComponent<CopyDragDestroyScript>().count -= 1;
+                    if (rowCover.activeInHierarchy) 
+                    { 
+                        rowCover.SetActive(false);
+                        FRCButton.GetComponent<CopyDragDestroyScript>().count -= 1;
+                    }
                 }
             }
         } 

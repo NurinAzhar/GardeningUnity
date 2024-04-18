@@ -13,6 +13,13 @@ public class ShowFRCAmount : MonoBehaviour
     void Update()
     {
         count = GameObject.Find("FRC Button").GetComponent<CopyDragDestroyScript>().count;
-        text.SetText("Amount Remaining: " + (3-count));
+        if (count >= 0)
+        {
+
+            text.SetText("Amount Remaining: " + (3 - count));
+
+        } 
+        
+        
     }
 }

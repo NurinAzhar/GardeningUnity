@@ -33,10 +33,6 @@ public class CopyDragDestroyScript : MonoBehaviour, IBeginDragHandler, IDragHand
             transform.position = startPosition;
         }
          
-        if (count > 3) //limit it to only 3 floating row covers
-        {
-            itemDragged.SetActive(false);
-        }
     }
 
     public GameObject GetItemDragged()
