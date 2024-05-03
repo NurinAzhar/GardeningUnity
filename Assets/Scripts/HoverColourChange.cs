@@ -27,6 +27,7 @@ public class HoverColourChange : MonoBehaviour, IPointerEnterHandler, IPointerEx
         else if (lightIntensity > 1) // Highlight yellow for high light shaded ground
         {
             materialRenderer.material.color = newMaterialColour;
+            
         }
 
     }

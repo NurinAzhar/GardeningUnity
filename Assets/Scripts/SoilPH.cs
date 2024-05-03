@@ -151,4 +151,9 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         return this.phLevel;
     }
 
+
+    public void Update_ForTest()
+    {
+        Update();
+    }
 }
