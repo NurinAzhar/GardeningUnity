@@ -147,7 +147,7 @@ public class LsystemScript : MonoBehaviour
     private Dictionary<char, string> currentPlant;
 
 
-    //List to store all dictionary rules of plants
+    // List to store all dictionary rules of plants
     private List<Dictionary<char, string>> rules = new List<Dictionary<char, string>>();
 
     public Boolean generatedTree = false;
@@ -246,8 +246,6 @@ public class LsystemScript : MonoBehaviour
             rules.Add(rule5);
             rules.Add(rule6);
 
-            //Generate();
-
         }
         catch (Exception ex) { Debug.Log(ex.ToString()); }
     }
@@ -277,7 +275,6 @@ public class LsystemScript : MonoBehaviour
             sb = new StringBuilder(); // Reset string builder at every iteration
         }
 
-            //Debug.Log(currentString);
 
             foreach (char c in currentString)
             {
@@ -420,14 +417,6 @@ public class LsystemScript : MonoBehaviour
 
         fertiliserType = currentFertiliserType;
         plantSeed = currentPlantSeed;
-
-        //if (iterationsLastFrame != iterations ||
-        //        angleLastFrame != angleTurn ||
-        //        widthLastFrame != width ||
-        //        lengthLastFrame != length)
-        //{
-        //    Generate();
-        //}
 
         
         if (!generatedTree || soilTransform) 

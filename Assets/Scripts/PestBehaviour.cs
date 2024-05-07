@@ -12,17 +12,10 @@ public class PestBehaviour : MonoBehaviour
     public float seconds;
     public GameObject pest;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     private IEnumerator DeletionDelay(GameObject tree)
    {
 
-        seconds = UnityEngine.Random.Range(5f, 7f); // come back to change timings if neeeded
+        seconds = UnityEngine.Random.Range(5f, 7f); // Set timing for delay from range 5-7s
 
         yield return new WaitForSeconds((int)seconds);
 

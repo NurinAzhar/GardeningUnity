@@ -13,9 +13,6 @@ public class CopyAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //this will clone a lot? check if u still need it 
-        //GameObject duplicate = Instantiate(itemDragged);
-        //itemDragged = duplicate;
 
         startPosition = transform.position;
         startParent = transform.parent;
@@ -43,16 +40,4 @@ public class CopyAndDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         return itemDragged; 
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

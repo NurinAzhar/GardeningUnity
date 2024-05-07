@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class EventHandler : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
  
-
+    // This class is for storing/reference to the available IP event handlers that can be used
     private void Awake()
     {
         

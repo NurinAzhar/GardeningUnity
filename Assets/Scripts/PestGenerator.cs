@@ -10,17 +10,11 @@ public class PestGenerator : MonoBehaviour
     public GameObject soilPos;
     public GameObject RowCover;
 
-    public Vector3 scaledSoil = new Vector3(379.7141f, 500f, 390.2904f); //soil lifted scaling
+    public Vector3 scaledSoil = new Vector3(379.7141f, 500f, 390.2904f); // soil lifted scaling
 
     public float seconds;
     public Boolean soilLifted;
     public Boolean generatedTree;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     private IEnumerator Spawn()
     {
@@ -52,7 +46,6 @@ public class PestGenerator : MonoBehaviour
 
         checkSoil();
 
-        //might need to check up on these again
         if (generatedTree && !soilLifted && !RowCover.activeInHierarchy)
         {
             if (!pest.activeInHierarchy)

@@ -6,11 +6,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDropHandler /*IEndDragHandler*/
+public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDropHandler 
 {
 
     public TMP_Text text;
-    //GameObject currentDropped = null;
     public SoilPh phLevel;
     public GameObject pest;
 
@@ -46,8 +45,6 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void OnDrop(PointerEventData eventData)
     {
-
-        //GameObject currentDropped = GetComponent<CopyAndDrag>().itemDragged;
 
         GameObject currentDropped = eventData.pointerDrag;
 
@@ -112,7 +109,7 @@ public class SoilPH : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     }
 
-    //called only once to set initial random ph value of soil
+    // Called only once to set initial random ph value of soil
     public void Start()
     {
         SetRandom();
