@@ -38,6 +38,4 @@ Phacelia: [F[+X/FX+/*^^^]F[-X/F+/F*^^^]+X/*XF^^^]
 
 // ^ : Draw purple leaves
 
-This is my first game ever made in Unity, developed in accordance to finish my MENG Software Engineering dissertation project.
-
 Scripts are located in Assets/Scripts
